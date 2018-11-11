@@ -800,21 +800,129 @@ void draw_9() {
   }
   matrix.show();
 }
-
+void draw_period() {
+  int period[MAT_ROW][MAT_COL] =
+  { {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 1, 1, 0, 0, 0},
+    {0, 0, 0, 1, 1, 0, 0, 0},
+  };
+  for (int i = 0; i < 8; i++) {
+    for (int j = 0; j < 8; j++) {
+      if (period[j][i] == 1) {
+        matrix.drawPixel(j, i, matrix.Color(100, 186, 77));
+      }
+    }
+  }
+  matrix.show();
+}
+void draw_question() {
+  int question[MAT_ROW][MAT_COL] =
+  { {0, 0, 0, 1, 1, 0, 0, 0},
+    {0, 0, 1, 0, 0, 1, 0, 0},
+    {0, 0, 0, 0, 0, 1, 0, 0},
+    {0, 0, 0, 0, 1, 0, 0, 0},
+    {0, 0, 0, 1, 0, 0, 0, 0},
+    {0, 0, 0, 1, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 1, 0, 0, 0, 0},
+  };
+  for (int i = 0; i < 8; i++) {
+    for (int j = 0; j < 8; j++) {
+      if (question[j][i] == 1) {
+        matrix.drawPixel(j, i, matrix.Color(100, 186, 77));
+      }
+    }
+  }
+  matrix.show();
+}
+void draw_exclamation() {
+  int exclamation[MAT_ROW][MAT_COL] =
+  { {0, 0, 0, 1, 1, 0, 0, 0},
+    {0, 0, 0, 1, 1, 0, 0, 0},
+    {0, 0, 0, 1, 1, 0, 0, 0},
+    {0, 0, 0, 1, 1, 0, 0, 0},
+    {0, 0, 0, 1, 1, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 1, 1, 0, 0, 0},
+    {0, 0, 0, 1, 1, 0, 0, 0},
+  };
+  for (int i = 0; i < 8; i++) {
+    for (int j = 0; j < 8; j++) {
+      if (exclamation[j][i] == 1) {
+        matrix.drawPixel(j, i, matrix.Color(100, 186, 77));
+      }
+    }
+  }
+  matrix.show();
+}
 void eraseBOARD() {
+  delay(1000);
   matrix.fillRect(0, 0, 8, 8, matrix.Color(0, 0, 0));
 }
-
-void writeTextWithLights(str) {
+void writeTextWithLights(char str) {
   // parse the string and examine each character of the string
   // erase
   // for each character in the string, call one of your draw_ functions
   // delay
-
-
-  // NOTE to save you some headache... you havent written all the draw_ functions this code needs. so write them.
-  // ASCII characcter set
+  if (str == 'R') {
+    draw_R();
+    eraseBOARD();
+  }
+  else if (str == ' ') {
+    delay(1000);
+  }
+  else if (str == 'A') {
+    draw_A();
+    eraseBOARD();
+  }
+  else if (str == 'R') {
+    draw_R();
+    eraseBOARD();
+  }
+  else if (str == 'G') {
+    draw_G();
+    eraseBOARD();
+  }
+  else if (str == 'N') {
+    draw_N();
+    eraseBOARD();
+  }
+  else if (str == 'E') {
+    draw_E();
+    eraseBOARD();
+  }
+  else if (str == 'C') {
+    draw_C();
+    eraseBOARD();
+  }
+  else if (str == 'H') {
+    draw_H();
+    eraseBOARD();
+  }
+  else if (str == 'O') {
+    draw_O();
+    eraseBOARD();
+  }
+  else if (str == 'O') {
+    draw_O();
+    eraseBOARD();
+  }
+  else if (str == 'L') {
+    draw_L();
+    eraseBOARD();
+  }
+  else if (str == 'T') {
+    draw_T();
+    eraseBOARD();
+  }
 }
+String a;
+String b;
 
 void setup() {
   matrix.begin();
@@ -824,4 +932,14 @@ void setup() {
 
 void loop() {
 
+  while (Serial.available()) {
+
+    a = Serial.readString(); // read the incoming data as string
+    b = a;
+    b.toUpperCase();
+    for (int i = 0; i < b.length(); i++) {
+      char x = b.charAt(i);
+      writeTextWithLights(x);
+    }
+  }
 }
