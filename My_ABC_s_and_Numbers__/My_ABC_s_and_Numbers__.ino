@@ -1,12 +1,11 @@
-
 // Adafruit_NeoMatrix example for single NeoPixel Shield.
 // Scrolls 'Howdy' across the matrix in a portrait (vertical) orientation.
 
 #include <Adafruit_NeoMatrix.h>
 
 #define PIN 6
-#define MAT_ROW 8
-#define MAT_COL 8
+#define MAT_ROW 16
+#define MAT_COL 16
 int i = 0; //declaration, allocation, initialization
 
 float value;  //declaration, allocation
@@ -41,7 +40,7 @@ Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(MAT_ROW, MAT_COL, PIN,
                             NEO_MATRIX_TOP     + NEO_MATRIX_LEFT +
                             NEO_MATRIX_COLUMNS + NEO_MATRIX_PROGRESSIVE,
                             NEO_GRB            + NEO_KHZ800);
-
+/*
 void draw_A() {
   int A[MAT_ROW][MAT_COL] =
   { {0, 0, 0, 0, 0, 0, 0, 0},
@@ -863,13 +862,13 @@ void draw_exclamation() {
 void eraseBOARD() {
   delay(1000);
   matrix.fillRect(0, 0, 8, 8, matrix.Color(0, 0, 0));
-}
+}*/
 void writeTextWithLights(char str) {
   // parse the string and examine each character of the string
   // erase
   // for each character in the string, call one of your draw_ functions
   // delay
-  if (str == 'R') {
+/*  if (str == 'R') {
     draw_R();
     eraseBOARD();
   }
@@ -920,7 +919,7 @@ void writeTextWithLights(char str) {
     draw_T();
     eraseBOARD();
   }
-}
+}*/
 String a;
 String b;
 
